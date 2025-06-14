@@ -3,20 +3,21 @@ package main
 import (
 	"time"
 
-	"github.com/shopspring/decimal" 
+	"github.com/shopspring/decimal"
+)
 
 type User struct {
 	ID           string    `json:"id"`
 	Username     string    `json:"username"`
 	Email        string    `json:"email"`
-	PasswordHash string    `json:"-"` 
+	PasswordHash string    `json:"-"`
 	CreatedAt    time.Time `json:"created_at"`
 }
 
 type Account struct {
 	ID        string          `json:"id"`
 	UserID    string          `json:"user_id"`
-	Number    string          `json:"number"` 
+	Number    string          `json:"number"`
 	Balance   decimal.Decimal `json:"balance"`
 	CreatedAt time.Time       `json:"created_at"`
 }
@@ -24,17 +25,17 @@ type Account struct {
 type Card struct {
 	ID          string    `json:"id"`
 	AccountID   string    `json:"account_id"`
-	Number      string    `json:"number"` 
+	Number      string    `json:"number"`
 	ExpiryMonth int       `json:"expiry_month"`
 	ExpiryYear  int       `json:"expiry_year"`
-	CVV         string    `json:"-"` 
+	CVV         string    `json:"-"`
 	CreatedAt   time.Time `json:"created_at"`
 }
 
 type Transaction struct {
 	ID              string          `json:"id"`
-	FromAccountID   string          `json:"from_account_id,omitempty"` 
-	ToAccountID     string          `json:"to_account_id,omitempty"`   
+	FromAccountID   string          `json:"from_account_id,omitempty"`
+	ToAccountID     string          `json:"to_account_id,omitempty"`
 	Amount          decimal.Decimal `json:"amount"`
 	Timestamp       time.Time       `json:"timestamp"`
 	TransactionType string          `json:"transaction_type"`
@@ -44,7 +45,7 @@ type Transaction struct {
 type Loan struct {
 	ID              string          `json:"id"`
 	UserID          string          `json:"user_id"`
-	AccountID       string          `json:"account_id"` 
+	AccountID       string          `json:"account_id"`
 	Amount          decimal.Decimal `json:"amount"`
 	InterestRate    decimal.Decimal `json:"interest_rate"`
 	TermMonths      int             `json:"term_months"`
@@ -61,7 +62,6 @@ type Payment struct {
 	Paid          bool            `json:"paid"`
 }
 
-
 type RegisterRequest struct {
 	Username string `json:"username"`
 	Email    string `json:"email"`
@@ -74,7 +74,7 @@ type LoginRequest struct {
 }
 
 type CreateAccountRequest struct {
-	UserID string `json:"user_id"` 
+	UserID string `json:"user_id"`
 }
 
 type GenerateCardRequest struct {
@@ -84,7 +84,7 @@ type GenerateCardRequest struct {
 type PaymentRequest struct {
 	CardNumber string          `json:"card_number"`
 	Amount     decimal.Decimal `json:"amount"`
-	Merchant   string          `json:"merchant"` 
+	Merchant   string          `json:"merchant"`
 }
 
 type TransferRequest struct {
@@ -99,7 +99,7 @@ type DepositRequest struct {
 }
 
 type ApplyLoanRequest struct {
-	UserID     string          `json:"user_id"` 
+	UserID     string          `json:"user_id"`
 	AccountID  string          `json:"account_id"`
 	Amount     decimal.Decimal `json:"amount"`
 	TermMonths int             `json:"term_months"`
